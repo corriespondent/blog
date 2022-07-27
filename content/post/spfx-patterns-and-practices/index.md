@@ -1,12 +1,12 @@
 # Patterns and Practices for SPFx Development
 
-Any solution whether it is SPFx based or any other programming, it is best to make it loosely coupled to achieve easy maintenance and scalability. To achieve that, you can use concepts like Separation of Concern, IoC (Inversion of Control), dependency injection or any of SOLID principles.
+When building any solution, whether it is SPFx-based or with any other programming language, it is best to make it loosely coupled to achieve easy maintenance and scalability. To achieve that, you can use concepts like Separation of Concern, IoC (Inversion of Control), dependency injection or any of SOLID principles.
 
-Following best practices can help you to write better code for SPFx development:
+The following best practices can help you to write better code for SPFx development:
 
 ## Default Scaffolding
 
-When you create your first webpart by running the Yeoman SharePoint Generator, it creates the basic project scaffolding (folders & files). It creates a react component with sample 'Hello World' UI. The initial folder structure will be as follows:
+When you create your first webpart by running the Yeoman SharePoint Generator, it creates the basic project scaffolding (folders & files). It creates a React component with sample 'Hello World' UI. The initial folder structure will be as follows:
 
 ```markdown
 +-- config
@@ -27,7 +27,7 @@ When you create your first webpart by running the Yeoman SharePoint Generator, i
 
 ## High Level Solution Structure
 
-The first and foremost practice for SPFx solution is building solution structure. When your solution has multiple webparts, it is highly possible you share common code and components. This is where 'Separation of Concern' concept can be utilized. The following structure can help you to implement 'Separation of Concern' and achieve reusability, scalability, easy maintenance.
+The first and foremost best practice for SPFx solutions is building solution structure. When your solution has multiple webparts, it is very likely you will share common code and components. This is where 'Separation of Concern' concept can be utilized. The following structure can help you to implement 'Separation of Concern' and achieve reusability, scalability, and easy maintenance.
 
 ```markdown
 .
@@ -77,7 +77,7 @@ The first and foremost practice for SPFx solution is building solution structure
 
 ## Business Logic Implementation
 
-For business logic implementation, you may consider to create services for each business requirement. The core implementation can be further move to a separate folder 'core' where you can define services which contains internal logic to access data or perform other operations. Following example can help you to understand how you can implement business logic for a store application.
+For business logic implementation, you may consider creating services for each business requirement. The core implementation can be further moved to a separate folder 'core' where you can define services which contain internal logic to access data or perform other operations. The following example can help you to understand how you can implement business logic for a store application:
 
 ```markdown
 +-- services
@@ -199,20 +199,20 @@ In some cases, if your business logic is not too complex, you can simply combine
   3. SearchBar.tsx
   4. Paging.tsx
 
-* If you're building rich complex UI and if you have identified large set of UI components, you can probably create separate folders to group them.
+* If you're building rich complex UI and if you have identified a large set of UI components, you can probably create separate folders to group them.
 * These UI components should only contain rendering logic. Do not add any business logic or data access code in these components.
 * You should not add multiple function components/classes to single file.
-* Consider to keep the code minimal in render method.
-* Consider to handle exception properly. Log the exception details with logger components and present generic informative message for end-user on screen. 
+* Consider keeping the code minimal in render method.
+* Consider handling exception properly. Log the exception details with logger components and present generic informative message for end-user on screen. 
 * Do not hardcode strings including generic messages. Use string labels defined in language files (en-us.js) located at src > webparts > myWebPart > loc
 * Do not store large objects in session/local storages
-* Consider to import leaf level components while importing third party libraries. For example, if you want to import PrimayButton from Office Fabric library, use import { PrimaryButton } from "@fluentui/react/lib/Button"; rather than import { PrimaryButton } from "@fluentui/react";. This will help you to keep your package size compact. This can be very useful in scenarios where you would want to build home page components which are required to be performance effective at first load.
+* Consider importing leaf level components while importing third party libraries. For example, if you want to import PrimayButton from Office Fabric library, use import { PrimaryButton } from "@fluentui/react/lib/Button"; rather than import { PrimaryButton } from "@fluentui/react";. This will help you to keep your package size compact. This can be very useful in scenarios where you would want to build home page components which are required to be performance effective at first load.
 
 ## General Coding Guidelines
 
 * Use **single responsibility principle** while defining classes, function components or methods. Any class/component should be defined to do one single job.
 * Similarly, A method/function also should perform only single job it supposed to do. Do not combine more than one job definitions in a single method, even if those jobs are very small. Avoid writing long methods.
-* If you think, your method can be reusable, define the same as static in a helper class.
+* If you think your method can be reusable, define the same as static in a helper class.
 * Avoid passing too many parameters to a method. Define model/entity instead and pass it as parameter.
 * Do not hardcode predefined numbers/strings. Use constants instead.
 * Use enum wherever required. Do not use numbers or strings to indicate discrete values.
